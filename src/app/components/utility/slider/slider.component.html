@@ -1,0 +1,31 @@
+<div id="product-slider-container" class="w-[800px] m-auto">
+    <div *ngIf="!isLoading">
+        <owl-carousel-o [options]="carouselOptions">
+            <ng-container *ngFor="let product of products" class="">
+                <ng-template carouselSlide>
+                    <form id="product-card-form" class=" w-[220px] min-h-[400px] px-4 py-2 border-2">
+                        <div id="product-card-caontainer" class="">
+                            <a routerLink="product/{{product.url_key}}" id="product-card-header"
+                                class="flex flex-col flex-wrap items-center">
+                                <img class="w-[220px] h-[220px] aspect-auto" [src]="product.thumbnail" alt="product.title">
+                                <span>{{product.title}}</span>
+                            </a>
+                            <div id="product-card-content">
+                                <div class="flex justify-between items-center">
+                                    <span>
+                                        $ {{product.price}}
+                                    </span>
+                                    <div class="mt-auto flex flex-wrap justify-center items-center">
+                                        <button class="w-20 md:w-auto justify-center text-sm mr-auto">
+                                            <span>Add to cart</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ng-template>
+            </ng-container>
+        </owl-carousel-o>
+    </div>
+</div>

@@ -1,1 +1,107 @@
 /* You can add global styles to this file, and also import other style files */
+
+@layer tailwind-base, primeng, tailwind-utilities;
+
+@layer tailwind-base {
+    @tailwind base;
+}
+
+@layer primeng;
+
+@layer tailwind-utilities {
+    @tailwind components;
+    @tailwind utilities;
+}
+
+:root {
+    --btn-primiary: #c0d534;
+    --btn-secondary: #ff923a;
+    --primary: #f6f6f6;
+    --secondary: #e1e1e1;
+}
+
+*,
+body {
+    box-sizing: border-box;
+}
+
+
+main {
+    background-color: #f3f3f3;
+    background-size: 250px auto;
+}
+
+a {
+    text-decoration: none;
+    background: 0 0;
+}
+
+a:any-link {
+    cursor: auto;
+}
+
+@font-face {
+    font-family: 'sss-icon';
+    src: url('./assets/fonts/sss-icons.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.svg-add-to-cart {
+    display: inline-block;
+    width: 22px;
+    height: 20px;
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-indent: 200%;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.cart-main-button {
+    min-width: 168px;
+    margin-right: 0 !important;
+    padding-right: 38px;
+    padding-left: 18px;
+    border-radius: 5px;
+    float: right;
+    line-height: 24px;
+    font-size: 12px;
+    letter-spacing: 14px;
+    text-align: center;
+    font-weight: 700;
+    background-image: url('/assets/icons/button-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px auto;
+}
+
+.main-button {
+    background-color: #f16621;
+    color: #fff;
+}
+
+.shipping-method-select-wrapper {
+    height: 30px;
+    position: relative;
+    display: flex;
+    margin: 0 15px 15px 15px;
+
+    .option-content {
+        display: flex;
+        flex-direction: row;
+        margin: 0 2px 0 2px;
+        font-size: 12px;
+        font-weight: 400;
+        color: #333;
+    }
+
+    .p-inputtext {
+        padding: 8px 28px 8px 12px;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,52 @@
+.main-container {
+    width: 80%;
+    margin: 0 auto;
+
+    .container-wrapper {
+        display: flex;
+        margin-top: 20px;
+    }
+
+    .column {
+        display: flex;
+        border: 1px solid #dfe3e5;
+        /* border-radius: 14px; */
+        background: #fff;
+    }
+
+    .my-account-content {
+        width: 70%;
+        height: 200px;
+        display: inline-block;
+    }
+
+    .my-account-navigation {
+        height: min-content;
+        display: inline-flex;
+        flex-direction: column;
+        margin-right: 20px;
+        flex: 1;
+        border: solid 1px #e6e6e6;
+        border-bottom: none;
+        width: 100%;
+
+        ul {
+            width: 100%;
+            margin: 0;
+            padding-left: 0;
+        }
+
+        li {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .my-account-row {
+            padding: 15px 25px;
+        }
+
+        .my-account-link {
+            font-size: 14px;
+            line-height: 1.25;
+        }
+    }
+}

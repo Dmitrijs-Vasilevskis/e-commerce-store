@@ -1,0 +1,9 @@
+<div *ngIf="paginationData" class="flex-auto">
+    <p-paginator
+    [first]="1"
+    [rows]="paginationData.perPage"
+    [totalRecords]="paginationData.total"
+    [alwaysShow]="false"
+    (onPageChange)="onPageChange($event)"
+    />
+</div>

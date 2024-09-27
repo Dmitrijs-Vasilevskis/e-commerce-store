@@ -1,0 +1,114 @@
+.minicart-contaier {
+    .minicart-items-scroll {
+        overflow-y: scroll;
+        max-height: 350px;
+    }
+
+    .minicart-item-block:last-child {
+        border-bottom: none;
+    }
+
+    .minicart-item-block {
+        padding: 12px 20px 6px;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+
+        .minicart-item-content {
+            float: left;
+            width: 125px;
+
+            .minicart-item-title {
+                margin: 0;
+                padding-top: 6px;
+                margin-bottom: 8px;
+                font-size: 12px;
+                line-height: 15px;
+
+                .minicart-item-title-link {
+                    color: #666;
+                    text-decoration: none;
+                    cursor: auto;
+                }
+
+                .minicart-item-title-link:hover {
+                    color: #000;
+                }
+            }
+        }
+
+        .minicart-item-price {
+            font-size: 15px;
+            display: block;
+            color: #333;
+            clear: both;
+            padding-top: 1px;
+            font-weight: 500;
+
+            .minicart-item-price-qty {
+                padding-left: 2px;
+                font-size: 12px;
+                font-weight: 400;
+            }
+        }
+
+        .minicart-item-image-block {
+            float: right;
+            margin-right: 8px;
+            width: 60px;
+            height: 60px;
+            position: relative;
+            overflow: hidden;
+
+            .minicart-item-image {
+                max-width: 50px;
+                height: auto;
+            }
+        }
+    }
+
+    .minicart-subtotal-container {
+        padding: 8px 20px;
+        border-top: 1px solid #ddd;
+
+        .minicart-subtotal-box {
+            .minicart-subtotal-content {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                flex-grow: 1;
+                margin-bottom: 5px;
+            }
+
+            .minicart-subtotal-actions {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .minicart-actions-checkout {
+                    border-radius: 8px;
+                    background: #f16621;
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                    padding: 4px 0;
+
+                    .minicart-actions-checkout-btn {
+                        color: #ffffff;
+                        cursor: pointer;
+                    }
+                }
+
+                .minicart-actions-cart {
+                    padding-top: 4px;
+                    font-size: 14px;
+                    color: #666;
+                }
+
+                .minicart-actions-cart:hover {
+                    color: #000;
+                }
+            }
+        }
+    }
+}

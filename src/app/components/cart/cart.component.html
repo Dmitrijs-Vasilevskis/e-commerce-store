@@ -1,0 +1,133 @@
+<div class="cart-container">
+    <div (click)="clearCart()">clearCart</div>
+    <div class="cart-items-container">
+        <div class="cart-items-header">
+        </div>
+        <div *ngIf="cartItems.length > 1" class="cart-items-detailed-container">
+            <div class="cart-item-detailed-header">
+                <div class="cart-item-detail-image">
+                    items
+                </div>
+                <div class="cart-item-detail-title">
+                </div>
+                <div class="cart-item-detail-price">
+                    price
+                    <span>
+                        (psc.)
+                    </span>
+                </div>
+                <div class="cart-item-detail-qty">
+                    quantity
+                </div>
+                <div class="cart-item-detail-totals">
+                    price
+                </div>
+            </div>
+            <div class="cart-item-detail-block" *ngFor="let item of cartItems">
+                <div class="cart-item-detail-image cart-item-detail">
+                    <div class="detail-cart-image-wrap">
+                        <a [routerLink]="['catalog/product']" [queryParams]="{id: item.id}"
+                            class="detail-cart-image-link">
+                            <img [src]="item.thumbnail" alt="item.title" class="detail-cart-image">
+                        </a>
+                    </div>
+                </div>
+                <div class="cart-item-detail-title cart-item-detail">
+                    <p class="detail-item-name">
+                        <a [routerLink]="['catalog/product']" [queryParams]="{id: item.id}"
+                            class="detail-item-title-link">
+                            {{item.title}}
+                        </a>
+                    </p>
+                </div>
+                <div class="cart-item-detail-price cart-item-detail">
+                    <p class="detail-item-price">
+                        {{item.price.toString() | currency:'EUR'}}
+                    </p>
+                </div>
+                <div class="cart-item-detail-qty cart-item-detail">
+                    <form action="" class="cart-item-detail-qty-form">
+                        <div class="detail-item-qty">
+                            <a class="detail-item-qty-control dec" (click)="decreaseQty(item.id)">-</a>
+                            <input class="detail-item-qty-input" type="text" (change)="changeQty($event, item.id)"
+                                value="{{getInputQtyValue(item.qty)}}" name="" id="">
+                            <a class="detail-item-qty-control inc" (click)="increaseQty(item.id)">+</a>
+                        </div>
+                    </form>
+                    <div class="cart-item-detailed-remove">
+                        <a class="detail-item-remove" (click)="clearItemById(item.id)">
+                            <img class="detail-item-remove-img" src="../../../assets/icons/icon-delete.svg"
+                                alt="delete-icon">
+                            <span>remove</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="cart-item-detail-totals cart-item-detail">
+                    <p>
+                        {{ getItemTotalPrice(item.price, item.qty) | currency:'EUR'}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cart-bottom-wrapper">
+        <div class="cart-bottom">
+            <div class="cart-delivery-block">
+                <div class="cart-delivery-block-header">
+                    <div class="cart-delivery-block-header-content">
+                        Delivery Options
+                    </div>
+                </div>
+                <div class="cart-delivery-options-block">
+                    <ul class="cart-delivery-options-list" *ngIf="deliveryMethods.length > 0">
+                        <li class="cart-delivery-option" *ngFor="let deliveryMethod of deliveryMethods">
+                            <div class="cart-delivery-optoion-content">
+                                <div class="cart-delivery-option-icon">
+                                    <img class="cart-delivery-option-image" [src]="deliveryMethod.content.logo"
+                                        alt="delivery method logo">
+                                </div>
+                                <div class="cart-delivery-option-info">
+                                    <p class="cart-delivery-option-text">
+                                        <strong class="cart-delivery-option-text-strong">
+                                            {{deliveryMethod.method_title}}
+                                        </strong>
+                                    </p>
+                                    <p class="cart-delivery-option-text">
+                                        {{deliveryMethod.comment}}
+                                    </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cart-totals-block">
+                <div class="cart-totals-block-button-wrapper">
+                    <div class="cart-totals-row">
+                        <span class="cart-totals-text">Order Total:</span>
+                        <span class="cart-totals-price">{{getCartTotals() | currency:'EUR'}}</span>
+                    </div>
+                    <div class="cart-totals-continue-block">
+                        <a class="cart-totals-continue-link" href="">
+                            <img class="vertical" src="assets/icons/continue-shopping-arrow.svg" alt="back arrow icon">
+                            <span class="vertical">Countinue shopping</span>
+                        </a>
+                    </div>
+                    <div class="cart-actions-box">
+                        <a routerLink="/checkout" class="cart-main-button main-button">
+                            <span>
+                                Secure Checkout
+                            </span>
+                        </a>
+                        <div class="cart-actions-info">
+                            <p class="cart-actions-info-content">
+                                In the next step, you will be able to choose the place of delivery or the most
+                                convenient delivery method for you.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

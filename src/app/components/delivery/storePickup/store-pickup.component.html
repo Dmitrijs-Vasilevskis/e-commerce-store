@@ -1,0 +1,12 @@
+<div class="shipping-method-box" (click)="triggerForm()">
+    <div class="shpipping-method-header">
+        <div class="shipping-method-logo-box">
+            <img class="method-logo" [src]="data.content.logo" alt="{{data.carrier_title}}">
+        </div>
+        <div class="shipping-method-information">
+            <h4 class="title">{{data.carrier_title}}</h4>
+            <p class="comment">{{data.deliveryTermsComment}}</p>
+        </div>
+        
+    </div>
+</div>

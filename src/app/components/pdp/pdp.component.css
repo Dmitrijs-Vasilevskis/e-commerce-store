@@ -1,0 +1,163 @@
+.product-image {
+    width: auto;
+    height: auto;
+    display: block;
+    max-width: 100%;
+    max-height: 350px;
+    margin: auto;
+    aspect-ratio: auto 4/3;
+}
+
+#container {
+    max-width: 1280px;
+    min-height: 400px;
+    margin: 0 auto;
+    margin-bottom: 54px;
+    margin: 0 30px 54px 30px;
+
+    #detailed-product-block {
+        display: flex;
+        flex-direction: column;
+
+        #product-contaier {
+            background: #fff;
+            position: relative;
+            border: solid 1px #e6e6e6;
+        }
+
+        #product-left-bar {
+            width: 35%;
+            float: left;
+
+            #product-gallery{
+                padding: 53px 0 0 20px;
+            }
+        }
+
+        #product-right-bar {
+            width: 63%;
+            float: right;
+            padding: 53px 40px 16px 38px;
+
+            #rating-container {
+                padding-bottom: 17px;
+            }
+
+            .product-controls {
+                display: inline-block;
+            }
+
+            #product-detail-actions {
+                display: flex;
+                flex-direction: row;
+                margin-top: 16px;
+                height: 40px;
+
+                #add-to-cart {
+                    padding: 1px 15px 1px 50px;
+                    background: #f16621;
+                    position: relative;
+                    color: #ffffff;
+                    border-radius: 8px;
+                }
+
+                #product-detail-wishlist {
+                    position: relative;
+                    align-content: center;
+                    margin-left: 22px;
+                    cursor: pointer;
+
+                    a {
+                        font-size: 13px;
+                        padding-left: 24px;
+                        color: black;
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+
+            .form-qty-controller {
+                display: inline-block;
+            }
+
+            h1 {
+                font-size: 28px;
+                color: #444;
+                margin-top: 0;
+                margin-bottom: 4px;
+            }
+
+            #product-detail {
+                padding: 28px;
+                background: #f6f6f6;
+
+            }
+
+            .product-id {
+                font-size: 11px;
+                color: #999;
+                margin-bottom: 10px;
+                margin-top: 6px;
+            }
+
+            #product-qty-input {
+                padding: 9px;
+                text-align: center;
+                margin-right: 7px;
+                float: left;
+                height: 35px;
+                border-radius: 2px;
+                border: 1px solid #ccc;
+                width: 100px !important;
+            }
+
+            .product-qty-btn {
+                display: inline-block;
+                border-radius: 3px;
+                background: #ccc;
+                line-height: 20px;
+                height: 20px;
+                width: 20px;
+                text-align: center;
+                color: #666;
+                font-size: 16px;
+                margin-top: 7px;
+                margin-right: 7px;
+                float: left;
+                cursor: pointer;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            .svg-wishlist {
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                margin-top: -.5em;
+                font-size: 18px;
+                color: #696969;
+            }
+
+        }
+    }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

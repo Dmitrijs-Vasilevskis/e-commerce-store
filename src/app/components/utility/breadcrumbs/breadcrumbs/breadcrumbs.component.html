@@ -1,0 +1,18 @@
+<!-- <div class="breadcrumbs">
+    <div *ngFor="let breadcrumb of breadcrumbs; let last = last" class="breadcrumb-item">
+      <div *ngIf="!last">
+        <a routerLink="{{breadcrumb.url}}">{{ breadcrumb.label }}</a>
+      </div>
+      <div *ngIf="last">
+        {{ breadcrumb.label }}
+      </div>
+    </div>
+</div> -->
+
+<div class="breadcrumbs">
+  <span *ngFor="let breadcrumb of breadcrumbs" class="breadcrumbs-item">
+    <a routerLink="{{breadcrumb.url}}" class="breadcrumbs-item-link">
+      <span class="breadcrumb-text">{{ breadcrumb.label }}</span>
+    </a>
+  </span>
+</div>

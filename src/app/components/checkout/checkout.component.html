@@ -1,0 +1,317 @@
+<header class="page-header">
+    <div class="flex justify-between py-2 px-4">
+        <div class="header content">
+            <a class="logo w-16 h-16" href="">
+                <img class="max-w-14 max-h-14" src="assets/logos/computer-svgrepo-com.svg" alt="header logo">
+            </a>
+        </div>
+        <div>
+            <div>
+                <p>
+                    Need help?
+                </p>
+                <p>
+                    <a href="">
+                        <span>
+                            Contact us!
+                        </span>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="columns main-container">
+        <div class="column main">
+            <a routerLink="/cart">
+                <span>
+                    Return to cart
+                </span>
+            </a>
+            <div id="checkout" class="checkout-container">
+                <div class="checkout-wrapper">
+                    <div class="checkout-summary-container">
+                        <div class="checkout-summary-title">
+                            <h3>Your Cart</h3>
+                            <span></span>
+                        </div>
+                        <div class="checkout-summary-content">
+                            <div class="cart-items">
+                                <div class="minicart-items-wrapper">
+                                    <ol class="minicart-items" *ngIf="cartItems">
+                                        <!-- todo: improve cart items loading -->
+                                        <li class="product-item" *ngFor="let item of cartItems">
+                                            <div class="product">
+                                                <div class="product-item-image-block">
+                                                    <img [src]="item.thumbnail" alt="product image">
+                                                </div>
+                                                <div class="product-item-details">
+                                                    <div class="product-item-wrapper">
+                                                        <div class="product-item-inner">
+                                                            <div class="product-item-inner-content">
+                                                                <div class="product-item-name-block">
+                                                                    {{item.title}}
+                                                                </div>
+                                                                <div class="product-item-detail-qty">
+                                                                    <span>
+                                                                        Qty:
+                                                                    </span>
+                                                                    <span>
+                                                                        {{item.qty}}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <span class="product-item-price">
+                                                                {{item.price.toString() | currency:'EUR'}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <table class="checkout-summary-table">
+                                <tbody>
+                                    <tr class="totals">
+                                        <th class="table-title">Subtotal</th>
+                                        <td class="table-content">
+                                            <span>
+                                                {{getCartSubtotal() | currency:'EUR'}}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="totals shipping">
+                                        <th class="table-title">Shipping</th>
+                                        <td class="table-content discount">
+                                            <span>
+                                                Not yet calculated
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="totals tax">
+                                        <th class="table-title">Tax</th>
+                                        <td class="table-content">
+                                            <span>
+                                                {{0.00 | currency:'EUR'}}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="totals tax" *ngIf="isCartHasDiscount()">
+                                        <th class="table-title">Discount</th>
+                                        <td class="table-content">
+                                            <span>
+                                                discountAmount
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr class="totals grand">
+                                        <th class="table-title">Order total</th>
+                                        <td class="table-content">
+                                            <span>
+                                                {{ getOrderTotal() | currency:'EUR'}}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="checkout-form-container">
+                        <form id="placeOrder" name="placeerOrder" *ngIf="orderForm" [formGroup]="orderForm"
+                            (ngSubmit)="onSubmit()">
+                            <ol id="checkoutSteps" class="checkout-steps-wrapper">
+                                <li id="checkout-address" class="checkout-shipping-address checkout-step">
+                                    <div class="address-details-form-wrapper">
+                                        <div class="shipping-address-form-header form-header">
+                                            <h3 class="shipping-address-title checkout-form-title">
+                                                Shipping address
+                                            </h3>
+                                        </div>
+                                        <div class="shipping-address-form-wrapper expandable" 
+                                            [@expandDiv]="!isAddressFormSubmitted ? 'expanded' : 'collapsed'"
+                                        >
+                                        <!-- [hidden]="isAddressFormSubmitted" -->
+                                            <div class="row">
+                                                <div class="col-full">
+                                                    <div id="shipping-email" class="form-group">
+                                                        <input class="form-control" id="email" formControlName="email"
+                                                            type="email" placeholder="Email" />
+                                                        <small class="form-control-error"
+                                                            *ngIf="orderForm.get('email')?.invalid && (orderForm.get('email')?.dirty || orderForm.get('email')?.touched)">
+                                                            <p *ngIf="orderForm.get('email')?.errors?.['pattern']">
+                                                                Please enter a valid email address
+                                                                (Ex:johndoe&#64;domain.com).
+                                                            </p>
+                                                            <p *ngIf="orderForm.get('email')?.errors?.['required']">
+                                                                This is a required field.
+                                                            </p>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-half">
+                                                    <div id="shipping-first-name" class="">
+                                                        <div class="form-group">
+                                                            <input class="form-control" formControlName="firstName"
+                                                                type="text" placeholder="First Name">
+                                                            <small class="form-control-error"
+                                                                *ngIf="orderForm.get('firstName')?.invalid && (orderForm.get('firstName')?.dirty || orderForm.get('firstName')?.touched)">
+                                                                <p
+                                                                    *ngIf="orderForm.get('firstName')?.errors?.['required']">
+                                                                    This is a required field.</p>
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-half">
+                                                    <div class="form-group">
+                                                        <input class="form-control" formControlName="lastName"
+                                                            type="text" placeholder="Last Name">
+                                                        <small class="form-control-error"
+                                                            *ngIf="orderForm.get('lastName')?.invalid && (orderForm.get('lastName')?.dirty || orderForm.get('lastName')?.touched)">
+                                                            <p *ngIf="orderForm.get('lastName')?.errors?.['required']">
+                                                                This is a required field.</p>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-full">
+                                                    <div class="form-group">
+                                                        <input class="form-control" formControlName="address1"
+                                                            type="text" placeholder="Address">
+                                                        <small class="form-control-error"
+                                                            *ngIf="orderForm.get('address1')?.invalid && (orderForm.get('address1')?.dirty || orderForm.get('address1')?.touched)">
+                                                            <p *ngIf="orderForm.get('address1')?.errors?.['required']">
+                                                                This is a required field.</p>
+                                                            <p *ngIf="orderForm.get('address1')?.errors?.['pattern']">
+                                                                Address is not valid, special characters are not allowed
+                                                            </p>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-half">
+                                                    <div class="form-group">
+                                                        <input class="form-control" formControlName="address2"
+                                                            type="text" placeholder="Address 2 (Optional)">
+                                                        <small class="form-control-error"
+                                                            *ngIf="orderForm.get('address2')?.invalid && (orderForm.get('address2')?.dirty || orderForm.get('address2')?.touched)">
+                                                            <p *ngIf="orderForm.get('address2')?.errors?.['pattern']">
+                                                                Address is not valid, special characters are not allowed
+                                                            </p>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-half">
+                                                    <div class="form-group">
+                                                        <input class="form-control" formControlName="zipCode"
+                                                            type="text" placeholder="Postal Code">
+                                                        <small class="form-control-error"
+                                                            *ngIf="orderForm.get('zipCode')?.invalid && (orderForm.get('zipCode')?.dirty || orderForm.get('zipCode')?.touched)">
+                                                            <p *ngIf="orderForm.get('zipCode')?.errors?.['required']">
+                                                                This is a required field.</p>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-half">
+                                                    <div class="form-group">
+                                                        <input class="form-control" formControlName="city" type="text"
+                                                            placeholder="City">
+                                                        <small class="form-control-error"
+                                                            *ngIf="orderForm.get('city')?.invalid && (orderForm.get('city')?.dirty || orderForm.get('city')?.touched)">
+                                                            <p *ngIf="orderForm.get('city')?.errors?.['required']">
+                                                                This is a required field.</p>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-half">
+                                                    <div class="form-group">
+                                                        <input class="form-control" formControlName="region" type="text"
+                                                            placeholder="Region (Optional)">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-half">
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="tel"
+                                                            formControlName="phoneNumber" placeholder="Phone number">
+                                                        <small class="form-control-error"
+                                                            *ngIf="orderForm.get('phoneNumber')?.invalid && (orderForm.get('phoneNumber')?.dirty || orderForm.get('phoneNumber')?.touched)">
+                                                            <p
+                                                                *ngIf="orderForm.get('phoneNumber')?.errors?.['required']">
+                                                                This is a required field.</p>
+                                                            <p
+                                                                *ngIf="orderForm.get('phoneNumber')?.errors?.['pattern']">
+                                                                Please enter valid phone number
+                                                            </p>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="col-half">
+                                                    <div class="form-group">
+                                                        <select class="form-control" formControlName="countryCode"
+                                                            name="country-name" id="shipping-country">
+                                                            <option class="select-option"
+                                                                *ngFor="let availableShippingCountry of availableShippingCountries"
+                                                                value="{{availableShippingCountry.country_code}}">
+                                                                {{availableShippingCountry.country_name}}</option>
+                                                        </select>
+                                                        <label class="shipping-country-label"
+                                                            for="shipping-country">Location</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" (click)="submitAddressForm()" class="button">
+                                                <span>Save and continue</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="checkout-shipping" class="checkout-shipping-method checkout-step">
+                                    <div class="shipping-step-wrapper">
+                                        <div class="delivery-method-form-header form-header">
+                                            <h3 class="delivery-method-title checkout-form-title">
+                                                Delivery Method
+                                            </h3>
+                                        </div>
+                                        <div class="shipping-step-row expandable" [@expandDiv]="isShippingVisible ? 'expanded' : 'collapsed'">
+                                            <ol class="shipping-step-wrapper">
+                                                <li class="" *ngFor="let component of comopnents">
+                                                    <div class="shipping-form-control">
+                                                        <app-dynamic-renderer *ngIf="component"
+                                                            (dataFromChild)="handleDeliveryMethod($event)"
+                                                            [dynamicComponent]="component">
+                                                        </app-dynamic-renderer>
+                                                    </div>
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="checkout-payment" class="checkout-payment-method checkout-step">
+                                    <div class="payment-step-wrapper">
+                                        <div class="payment-method-form-header form-header">
+                                            <h3 class="payment-method-title checkout-form-title">
+                                                Payment
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ol>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

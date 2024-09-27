@@ -1,0 +1,32 @@
+<div class="my-account-wrapper">
+    <div class="my-account-header">
+        <h2 class="my-account-title">
+            Account details
+        </h2>
+    </div>
+    <div class="account-details-wrapper"> 
+        <h3 class="accoubt-details-data">
+            Customer data
+        </h3>
+        <table>
+            <tbody *ngIf="userData()">
+                <tr class="details-data">
+                    <td class="details-title">Email:</td>
+                    <td class="details-content">dimkjee&#64;gmail.com</td>
+                </tr>
+                <tr class="details-data">
+                    <td class="details-title">Password:</td>
+                    <td (click)="showPassword()" id="password" class="details-content password">28799344</td>
+                </tr>
+                <tr class="details-data">
+                    <td class="details-title">Username:</td>
+                    <td class="details-content">Dmitrijs Vasilevskis</td>
+                </tr>
+                <tr class="details-data">
+                    <td class="details-title">Phone number:</td>
+                    <td class="details-content">+37126006519</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

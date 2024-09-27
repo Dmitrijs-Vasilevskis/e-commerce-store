@@ -1,0 +1,42 @@
+<div (click)="clearCart()"></div>
+<div *ngIf="cartItems.length" class="minicart-contaier">
+    <div class="minicart-items-scroll">
+        <div *ngFor="let item of cartItems" class="minicart-item-block">
+            <div class="minicart-item-image-block">
+                <img class="minicart-item-image" [src]="item.thumbnail">
+            </div>
+            <div class="minicart-item-content">
+                <p class="minicart-item-title">
+                    <a [routerLink]="['product', item.url_key]"
+                        class="minicart-item-title-link">
+                        {{item.title}}
+                    </a>
+                </p>
+            </div>
+            <div class="minicart-item-price">
+                <span>{{item.price.toString() | currency:'EUR'}}</span>
+                <span class="minicart-item-price-qty">x{{item.qty}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="minicart-subtotal-container">
+        <div class="minicart-subtotal-box">
+            <div class="minicart-subtotal-content">
+                <p>Order total:</p>
+                <span>
+                    {{getCartSubtotal() | currency:'EUR'}}
+                </span>
+            </div>
+            <div class="minicart-subtotal-actions">
+                <div class="minicart-actions-checkout">
+                    <a routerLink="checkout" class="minicart-actions-checkout-btn">
+                        <span>Secure checkout</span>
+                    </a>
+                </div>
+                <a class="minicart-actions-cart" routerLink="cart">
+                    <span>View and edit cart</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

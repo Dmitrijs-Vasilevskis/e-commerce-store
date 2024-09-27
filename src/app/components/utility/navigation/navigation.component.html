@@ -1,0 +1,30 @@
+<nav class="navigation-container">
+    <div class="navigation-block">
+        <div class="navigation-primary-wrapper" (mouseleave)="qwe()">
+            <div class="navigation-primary-menu">
+                <div class="navgation-menu-item">
+                    <a routerLink="catalog" class="navigation-menu-inner" (mouseenter)="asd()">
+                        <i class="catalog-menu-icon icon-svg"></i>
+                        <span class="catalog-menu-text">Catalog</span>
+                    </a>
+                    <div class="catalog-submenu" [ngClass]="isShowMenu ? 'menu-visible' : 'menu-invisible'">
+                        <ul class="catalog-submenu-list">
+                            <li class="catalog-submenu-list-item" *ngFor="let category of categories">
+                                <a (click)="navigateToCategory(category)" class="catalog-submenu-link">{{category.category_title}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navigation-secondary-wrapper">
+            <div class="">
+                <ul class="navigation-secondary-menu-items">
+                    <li>asd</li>
+                    <li>qwe</li>
+                    <li>zxc</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

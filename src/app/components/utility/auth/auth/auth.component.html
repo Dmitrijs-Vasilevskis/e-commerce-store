@@ -1,0 +1,137 @@
+<div *ngIf="!isLoggedIn; else loggedIn">
+    <form *ngIf="!isRegistrationVisible" [formGroup]="authForm" class="login-form" action="" type="submit"
+        (ngSubmit)="onAuthSubmit()">
+        <div class="login-form-header">
+            <h3 class="login-form-title">
+                Login
+            </h3>
+        </div>
+        <div class="login-form-input-wrapper">
+            <div class="login-form-inner">
+                <input type="text" class="login-form-input" formControlName="email" name="email" id="email"
+                    placeholder="Enter your email">
+            </div>
+        </div>
+        <div class="login-form-input-wrapper">
+            <div class="login-form-inner">
+                <input type="text" class="login-form-input" formControlName="password" name="password" id="password"
+                    placeholder="Enter your password">
+            </div>
+        </div>
+        <div class="login-form-actions">
+            <button class="form-btn" type="submit">Sign in</button>
+        </div>
+        <div class="login-form-secondary-actions">
+            <span class="actions-content">Not a member yet?</span>
+            <a (click)="onSignUp()" class="registration-btn">Signup now</a>
+        </div>
+    </form>
+    <form *ngIf="isRegistrationVisible" [formGroup]="registrationForm" class="login-form" type="submit"
+        (ngSubmit)="onRegistrationSubmit()">
+        <div class="login-form-header">
+            <h3 class="login-form-title">
+                Signup
+            </h3>
+        </div>
+        <div class="login-form-input-wrapper">
+            <div class="login-form-inner">
+                <input type="text" class="login-form-input" formControlName="email" name="email" id="email"
+                    placeholder="Enter your email">
+            </div>
+        </div>
+        <div class="login-form-input-wrapper">
+            <div class="login-form-inner">
+                <input type="text" class="login-form-input" formControlName="firstName" name="firstName" id="firstName"
+                    placeholder="Enter your name">
+            </div>
+        </div>
+        <div class="login-form-input-wrapper">
+            <div class="login-form-inner">
+                <input type="text" class="login-form-input" formControlName="lastName" name="lastName" id="lastName"
+                    placeholder="Enter your surname">
+            </div>
+        </div>
+        <div class="login-form-input-wrapper">
+            <div class="login-form-inner">
+                <input type="text" class="login-form-input" formControlName="password" name="create-password"
+                    id="create-password" placeholder="Create password">
+            </div>
+        </div>
+        <div class="login-form-input-wrapper">
+            <div class="login-form-inner">
+                <input type="text" class="login-form-input" formControlName="passwordConfirm" name="confirm-password"
+                    id="confirm-password" placeholder="Confirm password">
+            </div>
+        </div>
+
+        <div class="login-form-actions">
+            <button class="form-btn" type="submit">Registration</button>
+        </div>
+        <div class="login-form-secondary-actions">
+            <span class="actions-content">Already have an account?</span>
+            <a (click)="onSignUp()" class="registration-btn">Login</a>
+        </div>
+    </form>
+</div>
+
+<ng-template #loggedIn>
+    <!-- <div class="account-container">
+        <div *ngIf="isLoggedIn" class="account-title-wrapper">
+            <h3 class="account-title">Welcome,</h3>
+            <span class="account-content">{{customerData?.firstName}}!</span>
+        </div>
+        <div class="account-actions-container">
+            <ul class="account-actions-wrapper">
+                <li class="account-actions-item">
+                    <a routerLink="account" class="account-link">
+                        <span class="account-link-content">
+                            My account
+                        </span>
+                    </a>
+                </li>
+                <li class="account-actions-item">
+                    <a routerLink="account/orders" class="account-link">
+                        <span class="account-link-content">
+                            Orders
+                        </span>
+                    </a>
+                </li>
+                <li class="account-actions-item">
+                    <a routerLink="account/wishlist" class="account-link">
+                        <span class="account-link-content">
+                            Wishlist
+                        </span>
+                    </a>
+                </li>
+                <li class="account-actions-item" (click)="asd()">
+                    <a class="account-link">
+                        <span class="account-link-content">
+                            Log out
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div> -->
+    <div class="px-4 py-3 text-sm text-gray-700">
+        <div>Welcome {{customerData?.firstName}} {{customerData?.lastName}}!</div>
+        <div class="font-medium truncate">{{customerData?.email}}</div>
+    </div>
+    <ul class="m-0 p-0 text-sm text-gray-700 text-gray-200" aria-labelledby="dropdownInformationButton">
+        <li>
+            <a href="#" class="block px-4 py-2 text-black hover:bg-gray-100 hover:text-black">My
+                Account</a>
+        </li>
+        <li>
+            <a href="#" class="block px-4 py-2 text-black hover:bg-gray-100 hover:text-black">Order</a>
+        </li>
+        <li>
+            <a href="#" class="block px-4 py-2 text-black hover:bg-gray-100 hover:text-black">Wishlist</a>
+        </li>
+    </ul>
+    <div class="py-2">
+        <a href="#" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 hover:text-black">Sign
+            out</a>
+    </div>
+</ng-template>
+

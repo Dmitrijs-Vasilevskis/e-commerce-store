@@ -1,0 +1,41 @@
+.breadcrumbs {
+    background: #fff;
+    font-size: 14px;
+    line-height: 1.9;
+    padding-top: 17px;
+    padding-bottom: 9px;
+}
+
+.breadcrumbs > .breadcrumbs-item:first-child > .breadcrumbs-item-link::before {
+    display: none;
+}
+
+.breadcrumbs-item {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 4px;
+    flex-shrink: 1;
+}
+
+.breadcrumbs-item-link {
+    color: #666;
+}
+
+.breadcrumbs-item-link::before {
+    
+    display: inline-block;
+    margin-top: -2px;
+    margin-right: 4px;
+    font-size: 12px;
+    vertical-align: middle;
+    content: "P";
+    font-family: 'sss-icon';
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+}

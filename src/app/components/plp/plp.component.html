@@ -1,0 +1,49 @@
+<div class="main-container">
+    <app-breadcrumbs></app-breadcrumbs>
+    <div>
+        <div class="catalog-layered-navigation-container">
+            <div>
+
+            </div>
+        </div>
+        <div class="catalog-products-container">
+            <div *ngFor="let product of products" class="catalog-product-container">
+                <div class="catalog-product-hover">
+                    <a [routerLink]="['product', product.url_key]" class="catalog-product-image-anchor">
+                        <img [src]="product.thumbnail" alt="{{product.title}}">
+                    </a>
+                    <div class="catalog-product-price-container">
+                        <div class="catalog-product-price">
+                            <span class="catalog-product-item-price">
+                                <span class="mr-1">{{product.price.toString() | currency:'EUR'}}</span>
+                                <span class="amount">/ pcs.</span>
+                            </span>
+                            <br>
+                            <span class="catalog-product-stock">
+                                Stock: {{ product.stock }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="catalog-product-btn">
+                        <div action="add-to-cart" novalidate="novalidate" class="">
+                            <input type="hidden" name="{{product.title}}" id="{{product.id}}" autocomplete="off">
+                        <input type="hidden" name="qty" id="product_qty" value="1" autocomplete="off">
+                            <div class="catalog-product-btn-wrapper">
+                                <button type="submit" class="add-to-cart-btn" (click)="addToCart(product)">
+                                    <span>Add to cart</span>
+                                    <span class="bg-add-to-cart svg-add-to-cart"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <a [href]="product.url_key" class="catalog-product-title">
+                        <span class="catalog-product-title-content">{{product.title}}</span>
+                    </a>
+                </div>
+            </div>
+            <div class="catalog-pagination-container" *ngIf="paginationInfo">
+                <app-pagination (pageChangeEvent)="onPageChange($event)" [paginationData]=paginationInfo></app-pagination>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<header>
+    <div class="flex h-16 w-4/5 mr-auto ml-auto">
+        <div id="header-left" class="flex flex-row items-center gap-2">
+            <a routerLink="home" class="logo w-16 h-16">
+                <img src="../../../assets/logos/computer-svgrepo-com.svg" alt="">
+            </a>
+            <div class="location-slot h-16 flex flex-row">
+                <div id="delivery-location-block" class="flex flex-col justify-center min-w-[85px]">
+                    <span id="delivery-location-content">Deliver to </span>
+                    <div id="current-delivery-location-destination-box" class="flex flex-row gap-1 relative"
+                        (click)="isDeliveryOptionsShown()">
+                        <span id="current-delivery-location-destination-country">{{getDeliveryCountry()}}</span>
+                        <span id="location-sprite" class="bg-down-arrow bg-no-repeat h-3 w-3 flex self-center"></span>
+                        <div class="current-delivery-location-options-block" id="delivery-location-block"
+                            *ngIf="showDeliveryOptions">
+                            <div class="delivery-location-option" *ngFor="let shippingLocation of shippingLocations"
+                                (click)="setDeliveryCountry(shippingLocation)">
+                                <p class="delivery-location-option-link">
+                                    {{shippingLocation.country_name}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="header-fill" class="flex flex-auto items-center grow shrink">
+            <form id="header-search" class="h-10 grow shrink">
+                <div id="header-search-wrapper" class="flex flex-row self-center h-10 justify-center">
+                    <input class="rounded-l-lg border-2 w-4/5 py-2 px-2" type="text" placeholder="Search for ..."
+                        autocomplete="off">
+                    <span id="header-search-submit"
+                        class="flex justify-center static bg-search-sprite bg-no-repeat rounded-r-lg border-2">
+                        <input id="header-search-submit-btn" class="w-10" type="submit" value="">
+                    </span>
+                </div>
+            </form>
+        </div>
+        <div id="header-right" class="content-center flex">
+            <div class="sign-in-container">
+                <a class="sign-in-user-link">
+                    <i class="user-block-icon header-svg-icon"></i>
+                </a>
+                <div class="sign-in-block-container expandable-block">
+                    <app-auth></app-auth>
+                </div>
+            </div>
+            <div class="wishlist-container">
+                <a class="wishlist-link">
+                    <i class="header-svg-icon wishlist-icon"></i>
+                </a>
+            </div>
+            <div class="cart-box-container">
+                <a routerLink="cart" class="cart-box-content">
+                    <i class="cart-box-icon header-svg-icon"></i>
+                    <span *ngIf="minicartCount() != 0" class="cart-box-count">{{minicartCount()}}</span>
+                </a>
+                <div class="cart-block-contaier expandable-block" *ngIf="minicartCount() != 0">
+                    <app-minicart></app-minicart>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,57 @@
+<div class="shipping-method-box">
+    <div class="shpipping-method-header" (click)="triggerForm()">
+        <div class="shipping-method-logo-box">
+            <img class="method-logo" [src]="data.content.logo" alt="{{data.carrier_title}}">
+        </div>
+        <div class="shipping-method-information">
+            <h4 class="title">{{data.carrier_title}}</h4>
+            <span class="comment">
+                <p>Delivery from: {{data.amount | currency:'EUR'}}</p>
+                <p>{{data.deliveryTermsComment}}</p>
+            </span>
+        </div>
+    </div>
+
+    <div [formGroup]="deliveryForm" [hidden]="!isFormVisible">
+        <div class="delivery-form-wrapper">
+            <div class="delivery-col">
+                <div class="delivery-form-group">
+                    <input class="delivery-form-control" formControlName="firstName" type="text" name="" id="" placeholder="First name">
+                </div>
+            </div>
+            <div class="delivery-col">
+                <div class="delivery-form-group">
+                    <input class="delivery-form-control" formControlName="lastName" type="text" name="" id="" placeholder="Last name">
+                </div>
+            </div>
+            <div class="delivery-col">
+                <div class="delivery-form-group">
+                    <input class="delivery-form-control" formControlName="telephone" type="tel" name="" id="" placeholder="Phone number">
+                </div>
+            </div>
+            <div class="delivery-col">
+                <div class="delivery-form-group">
+                    <input class="delivery-form-control" formControlName="city" type="text" name="" id="" placeholder="Delivery city">
+                </div>
+            </div>
+            <div class="delivery-col">
+                <div class="delivery-form-group">
+                    <input class="delivery-form-control" formControlName="address" type="text" name="" id="" placeholder="Address">
+                </div>
+            </div>
+            <div class="delivery-col">
+                <div class="delivery-form-group">
+                    <input class="delivery-form-control" formControlName="zipCode" type="text" name="" id="" placeholder="Post code">
+                </div>
+            </div>
+            <div class="delivery-col">
+                <div class="delivery-form-group">
+                    <input class="delivery-form-control" formControlName="comment" type="text" name="" id="" placeholder="Additional information">
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <button (click)="submitDeliveryMethodData()" class="" type="button">Apply</button>
+        </div>
+    </div>
+</div>

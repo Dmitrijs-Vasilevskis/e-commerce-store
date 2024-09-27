@@ -1,0 +1,42 @@
+<div id="container" *ngIf="!isLoading">
+    <div id="detailed-product-block">
+        <div id="product-contaier">
+            <div id="product-left-bar">
+                <div id="product-gallery">
+                    <img class="product-image" src="{{product.thumbnail}}" alt="img">
+                </div>
+            </div>
+            <div id="product-right-bar">
+                <h1>{{product.title}}</h1>
+                <p class="product-id">SKU: {{product.sku}}</p>
+                <!-- todo: implement rating -->
+                <!-- <div id="rating-container">
+                    <ngb-rating [max]="5" [rate]="getProductRating()"></ngb-rating>
+                </div> -->
+                <div id="product-detail">
+                    <form method="post" action="" id="product-add-to-cart-form">
+                        <div class="product-controls">
+                            <div class="form-qty-controller">
+                                <a class="product-qty-btn" id="dec-quantity" (click)="decreaseQty()">-</a>
+                                <input id="product-qty-input" name="productQty" min="1" maxlength="3" [(ngModel)]="currentQty" (change)="changeQty(currentQty)" type="number" autocomplete="false" value="{{currentQty}}">
+                                <a class="product-qty-btn" id="inc-quantity" (click)="increaseQty()">+</a>
+                            </div>
+                            <div id="product-detail-actions">
+                                <button type="submit" id="add-to-cart" name="button" (click)="addToCart()">
+                                    <!-- todo: add to cart request -->
+                                    <span id="add-to-cart-text">Add to cart</span>
+                                    <span id="add-to-cart-icon" class="bg-add-to-cart svg-add-to-cart"></span>
+                                </button>
+                                <div id="product-detail-wishlist">
+                                    <!-- todo: add to wishlist request -->
+                                    <a class="product-detail-wishlist-action">Add to wishlist</a>
+                                    <span class="bg-heart-icon svg-wishlist"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="main-container">
+    <div class="container-wrapper">
+        <div class="column my-account-navigation">
+            <ul>
+                <li>
+                    <div class="my-account-row">
+                        <div class="my-account-link-wrapper">
+                            <a routerLink="details" class="my-account-link">
+                                <span class="my-account-link-content">
+                                    Account details
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="my-account-row">
+                        <div class="my-account-link-wrapper">
+                            <a routerLink="orders" class="my-account-link">
+                                <span class="my-account-link-content">
+                                    My Orders
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="my-account-row">
+                        <div class="my-account-link-wrapper">
+                            <a routerLink="wishlist" class="my-account-link">
+                                <span class="my-account-link-content">
+                                    Wishlist
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="my-account-row">
+                        <div class="my-account-link-wrapper">
+                            <a class="my-account-link">
+                                <span class="my-account-link-content">
+                                    Log Out
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="column my-account-content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
